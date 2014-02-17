@@ -11,6 +11,7 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
+#import "ScoreLayer.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {
@@ -21,9 +22,12 @@
 }
 
 @property (nonatomic, retain) CCSprite *player;
-@property (nonatomic, assign) CGPoint posChange;
+@property (nonatomic, retain) ScoreLayer *scoreLayer;
+@property (nonatomic, retain) NSMutableArray *bullets;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
+
+-(void) updatePlayer:(ccTime)dt;
 
 @end

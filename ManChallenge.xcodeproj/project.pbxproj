@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD7731CD18AB2F2B0058D7E2 /* ScoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7731CC18AB2F2B0058D7E2 /* ScoreLayer.m */; };
+		AD7731D318AD04460058D7E2 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7731D218AD04460058D7E2 /* GameOverLayer.m */; };
 		ADD86B9B18AA3602008BBB32 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */; };
 		ADD86B9D18AA3602008BBB32 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */; };
 		ADD86B9F18AA3602008BBB32 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9E18AA3602008BBB32 /* OpenAL.framework */; };
@@ -148,6 +150,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD7731CB18AB2F2B0058D7E2 /* ScoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreLayer.h; sourceTree = "<group>"; };
+		AD7731CC18AB2F2B0058D7E2 /* ScoreLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreLayer.m; sourceTree = "<group>"; };
+		AD7731D118AD04460058D7E2 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		AD7731D218AD04460058D7E2 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		ADD86B9718AA3602008BBB32 /* ManChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -499,6 +505,10 @@
 				ADD86D4318AA3605008BBB32 /* HelloWorldLayer.m */,
 				ADD86D4518AA3605008BBB32 /* IntroLayer.h */,
 				ADD86D4618AA3605008BBB32 /* IntroLayer.m */,
+				AD7731CB18AB2F2B0058D7E2 /* ScoreLayer.h */,
+				AD7731CC18AB2F2B0058D7E2 /* ScoreLayer.m */,
+				AD7731D118AD04460058D7E2 /* GameOverLayer.h */,
+				AD7731D218AD04460058D7E2 /* GameOverLayer.m */,
 				ADD86BAF18AA3603008BBB32 /* Resources */,
 				ADD86BC718AA3603008BBB32 /* libs */,
 				ADD86D3B18AA3605008BBB32 /* Supporting Files */,
@@ -971,7 +981,9 @@
 				ADD86C8B18AA3604008BBB32 /* CCTexturePVR.m in Sources */,
 				ADD86CDB18AA3604008BBB32 /* ccUtils.c in Sources */,
 				ADD86C2C18AA3604008BBB32 /* CCLayer.m in Sources */,
+				AD7731CD18AB2F2B0058D7E2 /* ScoreLayer.m in Sources */,
 				ADD86C8E18AA3604008BBB32 /* CCTileMapAtlas.m in Sources */,
+				AD7731D318AD04460058D7E2 /* GameOverLayer.m in Sources */,
 				ADD86C9118AA3604008BBB32 /* CCTMXLayer.m in Sources */,
 				ADD86D2918AA3605008BBB32 /* mat4.c in Sources */,
 				ADD86C0518AA3603008BBB32 /* ccDeprecated.m in Sources */,
@@ -1185,6 +1197,7 @@
 				ADD86D4C18AA3605008BBB32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -13,17 +13,38 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
+#import "GameOverLayer.h"
+
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 
 @synthesize player = _player;
-@synthesize posChange = _posChange;
+@synthesize scoreLayer = _scoreLayer;
+@synthesize bullets = _bullets;
+
+- (NSString*)filePath:(NSString*)fileName {
+    
+    NSArray* myPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* myDocPath = [myPaths objectAtIndex:0];
+    NSString* filePath = [myDocPath stringByAppendingPathComponent:fileName];
+    return filePath;
+}
 
 -(void)dealloc {
     
-    [_player release];
+    [_player removeFromParentAndCleanup:YES];
+    
+    [_scoreLayer release];
+    
+    for (CCSprite *node in _bullets) {
+        [node removeFromParentAndCleanup:YES];
+    }
+    
+    [_bullets removeAllObjects];
+    [_bullets release];
+    
     [super dealloc];
 }
 
@@ -32,6 +53,10 @@
 	CCScene *scene = [CCScene node];
 	HelloWorldLayer *layer = [HelloWorldLayer node];
 	[scene addChild: layer];
+    
+    ScoreLayer *scLayer = [ScoreLayer node];
+    [scene addChild:scLayer];
+    layer.scoreLayer = scLayer;
 	
 	return scene;
 }
@@ -43,6 +68,7 @@
 		CGSize size = [[CCDirector sharedDirector] winSize];
         
         _player = [CCSprite spriteWithFile:@"player.png"];
+        _player.tag = 2;
         
         _player.position = ccp(size.width/2, size.height/2);
         
@@ -51,6 +77,8 @@
         self.isAccelerometerEnabled = YES;
         
         _countTimer = 0;
+        
+        _bullets = [[NSMutableArray alloc] init];
 		
 	}
     
@@ -89,16 +117,7 @@
     _shipPointsPerSecX = pointsPerSecX;
 }
 
--(void)gameLogic:(ccTime)dt {
-    
-    _countTimer++;
-    
-    if (_countTimer == 10) {
-        
-        _countTimer = 0;
-        
-        [self addBullet];
-    }
+-(void) updatePlayer:(ccTime)dt {
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
@@ -113,11 +132,73 @@
     newY = MIN(MAX(newY, minY), maxY);
     
     _player.position = ccp(newX, newY);
+    
+    [_scoreLayer scoreTimeChanged:dt];
+}
+
+-(void)gameLogic:(ccTime)dt {
+    
+    _countTimer++;
+    
+    if (_countTimer == 10) {
+        _countTimer = 0;
+        [self addBullet];
+    }
+    
+    
+    [self updatePlayer:dt];
+    
+    
+    CGRect rect = _player.boundingBox;
+    CGRect rect1 = CGRectMake(rect.origin.x + 11, rect.origin.y + 1, 8, 28);
+    CGRect rect2 = CGRectMake(rect.origin.x +  4, rect.origin.y + 1, 7, 16);
+    CGRect rect3 = CGRectMake(rect.origin.x + 19, rect.origin.y + 1, 7, 16);
+    CGRect rect4 = CGRectMake(rect.origin.x +  0, rect.origin.y + 3, 4,  5);
+    CGRect rect5 = CGRectMake(rect.origin.x + 27, rect.origin.y + 3, 4,  5);
+    
+    
+    NSMutableArray *bulletsToDelete = [[NSMutableArray alloc] init];
+    
+    for (CCSprite *bullet in _bullets) {
+        
+        if (CGRectIntersectsRect(rect1, bullet.boundingBox) ||
+            CGRectIntersectsRect(rect2, bullet.boundingBox) ||
+            CGRectIntersectsRect(rect3, bullet.boundingBox) ||
+            CGRectIntersectsRect(rect4, bullet.boundingBox) ||
+            CGRectIntersectsRect(rect5, bullet.boundingBox)) {
+            
+            [bulletsToDelete addObject:bullet];
+        }
+    }
+    
+    for (CCSprite *bullet in bulletsToDelete) {
+        [_bullets removeObject:bullet];
+        [self removeChild:bullet cleanup:YES];
+        
+        CCScene *gameOverScene = [GameOverLayer sceneInitWithScore:_scoreLayer.livingTime andBestScore:_scoreLayer.bestTime];
+        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+        
+        if (_scoreLayer.bestTime < _scoreLayer.livingTime) {
+            
+            NSString* fileName = [self filePath:@"bestTime.plist"];
+
+            NSMutableArray* data = [[[NSMutableArray alloc] init] autorelease];
+            
+            [data addObject:[NSString stringWithFormat:@"%f", _scoreLayer.livingTime]];
+            [data writeToFile:fileName atomically:YES];
+        }
+    }
+    
+    [bulletsToDelete release];
 }
 
 - (void)addBullet {
     
     CCSprite *bullet = [CCSprite spriteWithFile:@"bullet.png"];
+    bullet.tag = 1;
+    [_bullets addObject:bullet];
+    
+    
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
     // speed
@@ -241,6 +322,7 @@
     
     CCCallBlockN *actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [node removeFromParentAndCleanup:YES];
+        [_bullets removeObject:node];
     }];
     
     [bullet runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
