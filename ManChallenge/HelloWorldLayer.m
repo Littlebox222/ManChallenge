@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 
 #import "GameOverLayer.h"
+#import "SimpleAudioEngine.h"
 
 #pragma mark - HelloWorldLayer
 
@@ -79,7 +80,8 @@
         _countTimer = 0;
         
         _bullets = [[NSMutableArray alloc] init];
-		
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"game_music.mp3"];
 	}
     
     [self schedule:@selector(gameLogic:) interval:0.001];
@@ -87,14 +89,14 @@
 	return self;
 }
 
+static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
+
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
     
 #define kFilteringFactor 0.001
 #define kRestAccel -0
 #define kShipMaxPointsPerSec (winSize.width*0.5)
 #define kMaxDiff 0.2
-    
-    UIAccelerationValue rollingX, rollingY, rollingZ;
     
     rollingX = (acceleration.x * kFilteringFactor) + (rollingX * (1.0- kFilteringFactor));
     rollingY = (acceleration.y * kFilteringFactor) + (rollingY * (1.0- kFilteringFactor));
@@ -172,8 +174,11 @@
     }
     
     for (CCSprite *bullet in bulletsToDelete) {
+        
         [_bullets removeObject:bullet];
         [self removeChild:bullet cleanup:YES];
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"game_over.mp3"];
         
         CCScene *gameOverScene = [GameOverLayer sceneInitWithScore:_scoreLayer.livingTime andBestScore:_scoreLayer.bestTime];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
