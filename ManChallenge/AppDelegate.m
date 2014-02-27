@@ -77,7 +77,7 @@
 	// numberOfSamples: Only valid if multisampling is enabled
 	//  - Possible values: 0 to glGetIntegerv(GL_MAX_SAMPLES_APPLE)
 	CCGLView *glView = [CCGLView viewWithFrame:[window_ bounds]
-								   pixelFormat:kEAGLColorFormatRGB565
+								   pixelFormat:kEAGLColorFormatRGBA8
 								   depthFormat:0
 							preserveBackbuffer:NO
 									sharegroup:nil
@@ -135,9 +135,12 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+    
+    
 	
 	return YES;
 }
+
 
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application

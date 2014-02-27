@@ -13,8 +13,10 @@
 #import "cocos2d.h"
 #import "ScoreLayer.h"
 
+#import "THCapture.h"
+
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate> {
+@interface HelloWorldLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, THCaptureDelegate> {
     
     float _shipPointsPerSecX;
     float _shipPointsPerSecY;
@@ -25,9 +27,10 @@
 @property (nonatomic, retain) ScoreLayer *scoreLayer;
 @property (nonatomic, retain) NSMutableArray *bullets;
 
+@property (nonatomic, retain) THCapture *capture;
+
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
-+(UIImage*) screenshotWithStartNode:(CCNode*)startNode;
 
 -(void) updatePlayer:(ccTime)dt;
 

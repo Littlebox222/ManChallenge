@@ -143,7 +143,7 @@ typedef enum {
 @property(nonatomic,readonly) NSUInteger pixelsHigh;
 
 /** texture name */
-@property(nonatomic,readonly) GLuint name;
+@property(nonatomic,assign) GLuint name;
 
 /** returns content size of the texture in pixels */
 @property(nonatomic,readonly, nonatomic) CGSize contentSizeInPixels;

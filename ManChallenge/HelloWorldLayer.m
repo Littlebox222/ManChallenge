@@ -25,6 +25,8 @@
 @synthesize scoreLayer = _scoreLayer;
 @synthesize bullets = _bullets;
 
+@synthesize capture = _capture;
+
 - (NSString*)filePath:(NSString*)fileName {
     
     NSArray* myPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -34,6 +36,8 @@
 }
 
 -(void)dealloc {
+    
+    [_capture release];
     
     [_player removeFromParentAndCleanup:YES];
     
@@ -82,12 +86,51 @@
         _bullets = [[NSMutableArray alloc] init];
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"game_music.mp3"];
+        
+        // 录屏
+        self.capture=[[[THCapture alloc] init] autorelease];
+        _capture.frameRate = 60;
+        _capture.delegate = self;
+//        [_capture performSelector:@selector(startRecording) withObject:nil afterDelay:1];
+        
+        
+//        double delayToStartRecording = 0.5;
+//        dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, delayToStartRecording * NSEC_PER_SEC);
+//        dispatch_after(startTime, dispatch_get_main_queue(), ^(void){
+//            NSLog(@"Start recording");
+//
+//            [_capture startRecording];
+//
+//            /*
+//            double delayInSeconds = 10.0;
+//            dispatch_time_t stopTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//            dispatch_after(stopTime, dispatch_get_main_queue(), ^(void){
+//                
+//                [_capture stopRecording];
+//                NSLog(@"Movie completed");
+//            });
+//             */
+//        });
+        
+        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [_capture startRecording];
+//            if (data != nil) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.imageView.image = image;
+//                });
+//            }
+//        });
+        
+        
 	}
     
     [self schedule:@selector(gameLogic:) interval:0.001];
     
 	return self;
 }
+
+
 
 static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
 
@@ -140,6 +183,18 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
 
 -(void)gameLogic:(ccTime)dt {
     
+    
+//    CGSize winSize = [CCDirector sharedDirector].winSize;
+//    int screenScale = [UIScreen mainScreen].scale;
+//    int width = winSize.width * screenScale;
+//    int height = winSize.height * screenScale;
+//    
+//    NSInteger myDataLength = width * height * 4;
+//    
+//    GLubyte *buffer = (GLubyte *) malloc(myDataLength);
+//    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+//    free(buffer);
+    
     _countTimer++;
     
     if (_countTimer == 10) {
@@ -179,6 +234,10 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
         [self removeChild:bullet cleanup:YES];
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"game_over.mp3"];
+        
+//         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+             [_capture stopRecording];
+//         });
         
         CCScene *gameOverScene = [GameOverLayer sceneInitWithScore:_scoreLayer.livingTime andBestScore:_scoreLayer.bestTime];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
@@ -348,4 +407,37 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark -
+#pragma mark CustomMethod
+
+- (void)video: (NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo: (void *)contextInfo{
+    
+	if (error) {
+		NSLog(@"%@",[error localizedDescription]);
+	}
+}
+
+- (void)mergedidFinish:(NSString *)videoPath WithError:(NSError *)error
+{
+    //音频与视频合并结束，存入相册中
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoPath)) {
+		UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+	}
+}
+
+#pragma mark -
+#pragma mark THCaptureDelegate
+
+- (void)recordingFinished:(NSString*)outputPath
+{
+    NSLog(@"%@", outputPath);
+}
+
+- (void)recordingFaild:(NSError *)error
+{
+    NSLog(@"%@", error);
+}
+
+
 @end

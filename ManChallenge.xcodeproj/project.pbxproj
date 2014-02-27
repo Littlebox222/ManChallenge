@@ -11,7 +11,12 @@
 		AD7731D318AD04460058D7E2 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7731D218AD04460058D7E2 /* GameOverLayer.m */; };
 		ADB5913F18B1F9F3003AB607 /* game_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADB5913D18B1F9F3003AB607 /* game_music.mp3 */; };
 		ADB5914018B1F9F3003AB607 /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADB5913E18B1F9F3003AB607 /* game_over.mp3 */; };
-		ADB5915018B36873003AB607 /* Snapshooter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5914F18B36873003AB607 /* Snapshooter.m */; };
+		ADB5915518B4A572003AB607 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB5915418B4A572003AB607 /* CoreVideo.framework */; };
+		ADB5915718B4A5A6003AB607 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB5915618B4A5A6003AB607 /* CoreMedia.framework */; };
+		ADB5932C18B627F6003AB607 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB5932B18B627F6003AB607 /* AssetsLibrary.framework */; };
+		ADB5933218B6FE02003AB607 /* THCaptureUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5933118B6FE02003AB607 /* THCaptureUtilities.m */; };
+		ADD7743C18BDF03C00F4209A /* THCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7743B18BDF03C00F4209A /* THCapture.m */; };
+		ADD7744318BF2F5800F4209A /* CCRenderTexture+GLubyte.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7744218BF2F5800F4209A /* CCRenderTexture+GLubyte.m */; };
 		ADD86B9B18AA3602008BBB32 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */; };
 		ADD86B9D18AA3602008BBB32 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */; };
 		ADD86B9F18AA3602008BBB32 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9E18AA3602008BBB32 /* OpenAL.framework */; };
@@ -159,8 +164,15 @@
 		AD7731D218AD04460058D7E2 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		ADB5913D18B1F9F3003AB607 /* game_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_music.mp3; path = Resources/game_music.mp3; sourceTree = "<group>"; };
 		ADB5913E18B1F9F3003AB607 /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_over.mp3; path = Resources/game_over.mp3; sourceTree = "<group>"; };
-		ADB5914E18B36873003AB607 /* Snapshooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshooter.h; sourceTree = "<group>"; };
-		ADB5914F18B36873003AB607 /* Snapshooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshooter.m; sourceTree = "<group>"; };
+		ADB5915418B4A572003AB607 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		ADB5915618B4A5A6003AB607 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		ADB5932B18B627F6003AB607 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		ADB5933018B6FE02003AB607 /* THCaptureUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCaptureUtilities.h; sourceTree = "<group>"; };
+		ADB5933118B6FE02003AB607 /* THCaptureUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCaptureUtilities.m; sourceTree = "<group>"; };
+		ADD7743A18BDF03C00F4209A /* THCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCapture.h; sourceTree = "<group>"; };
+		ADD7743B18BDF03C00F4209A /* THCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCapture.m; sourceTree = "<group>"; };
+		ADD7744118BF2F5800F4209A /* CCRenderTexture+GLubyte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCRenderTexture+GLubyte.h"; sourceTree = "<group>"; };
+		ADD7744218BF2F5800F4209A /* CCRenderTexture+GLubyte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCRenderTexture+GLubyte.m"; sourceTree = "<group>"; };
 		ADD86B9718AA3602008BBB32 /* ManChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -453,6 +465,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB5932C18B627F6003AB607 /* AssetsLibrary.framework in Frameworks */,
+				ADB5915718B4A5A6003AB607 /* CoreMedia.framework in Frameworks */,
+				ADB5915518B4A572003AB607 /* CoreVideo.framework in Frameworks */,
 				ADD86B9F18AA3602008BBB32 /* OpenAL.framework in Frameworks */,
 				ADD86BA518AA3603008BBB32 /* UIKit.framework in Frameworks */,
 				ADD86B9B18AA3602008BBB32 /* QuartzCore.framework in Frameworks */,
@@ -489,6 +504,9 @@
 		ADD86B9918AA3602008BBB32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADB5932B18B627F6003AB607 /* AssetsLibrary.framework */,
+				ADB5915618B4A5A6003AB607 /* CoreMedia.framework */,
+				ADB5915418B4A572003AB607 /* CoreVideo.framework */,
 				ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */,
 				ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */,
 				ADD86B9E18AA3602008BBB32 /* OpenAL.framework */,
@@ -508,8 +526,12 @@
 			children = (
 				ADD86D3F18AA3605008BBB32 /* AppDelegate.h */,
 				ADD86D4018AA3605008BBB32 /* AppDelegate.m */,
-				ADB5914E18B36873003AB607 /* Snapshooter.h */,
-				ADB5914F18B36873003AB607 /* Snapshooter.m */,
+				ADD7744118BF2F5800F4209A /* CCRenderTexture+GLubyte.h */,
+				ADD7744218BF2F5800F4209A /* CCRenderTexture+GLubyte.m */,
+				ADD7743A18BDF03C00F4209A /* THCapture.h */,
+				ADD7743B18BDF03C00F4209A /* THCapture.m */,
+				ADB5933018B6FE02003AB607 /* THCaptureUtilities.h */,
+				ADB5933118B6FE02003AB607 /* THCaptureUtilities.m */,
 				ADD86D4218AA3605008BBB32 /* HelloWorldLayer.h */,
 				ADD86D4318AA3605008BBB32 /* HelloWorldLayer.m */,
 				ADD86D4518AA3605008BBB32 /* IntroLayer.h */,
@@ -1005,8 +1027,10 @@
 				ADD86CEC18AA3604008BBB32 /* TransformUtils.m in Sources */,
 				ADD86C3918AA3604008BBB32 /* CCNode+Debug.m in Sources */,
 				ADD86C1418AA3603008BBB32 /* ccFPSImages.m in Sources */,
+				ADD7743C18BDF03C00F4209A /* THCapture.m in Sources */,
 				ADD86C9A18AA3604008BBB32 /* CCTMXXMLParser.m in Sources */,
 				ADD86D3118AA3605008BBB32 /* ray2.c in Sources */,
+				ADB5933218B6FE02003AB607 /* THCaptureUtilities.m in Sources */,
 				ADD86CCC18AA3604008BBB32 /* base64.c in Sources */,
 				ADD86BEF18AA3603008BBB32 /* CCActionTween.m in Sources */,
 				ADD86C2618AA3603008BBB32 /* CCLabelBMFont.m in Sources */,
@@ -1029,7 +1053,6 @@
 				ADD86BEC18AA3603008BBB32 /* CCActionTiledGrid.m in Sources */,
 				ADD86C3318AA3604008BBB32 /* CCMenuItem.m in Sources */,
 				ADD86BCE18AA3603008BBB32 /* CCActionCamera.m in Sources */,
-				ADB5915018B36873003AB607 /* Snapshooter.m in Sources */,
 				ADD86D0018AA3604008BBB32 /* CDXPropertyModifierAction.m in Sources */,
 				ADD86CD018AA3604008BBB32 /* CCArray.m in Sources */,
 				ADD86D2D18AA3605008BBB32 /* plane.c in Sources */,
@@ -1078,6 +1101,7 @@
 				ADD86C8218AA3604008BBB32 /* CCTexture2D.m in Sources */,
 				ADD86C9718AA3604008BBB32 /* CCTMXTiledMap.m in Sources */,
 				ADD86C5818AA3604008BBB32 /* CCRenderTexture.m in Sources */,
+				ADD7744318BF2F5800F4209A /* CCRenderTexture+GLubyte.m in Sources */,
 				ADD86BE018AA3603008BBB32 /* CCActionInterval.m in Sources */,
 				ADD86C4E18AA3604008BBB32 /* CCPhysicsDebugNode.m in Sources */,
 				ADD86BD418AA3603008BBB32 /* CCActionEase.m in Sources */,
