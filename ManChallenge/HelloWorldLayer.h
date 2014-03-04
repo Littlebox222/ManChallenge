@@ -20,7 +20,8 @@
     
     float _shipPointsPerSecX;
     float _shipPointsPerSecY;
-    int _countTimer;
+    
+    int colorRampUniformLocation;
 }
 
 @property (nonatomic, retain) CCSprite *player;
@@ -28,6 +29,8 @@
 @property (nonatomic, retain) NSMutableArray *bullets;
 
 @property (nonatomic, retain) THCapture *capture;
+
+@property (nonatomic, retain) CCRenderTexture *renderTexture;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

@@ -37,6 +37,8 @@
 
 @property(assign) BOOL shouldStopRecording;
 
+@property(assign) CCRenderTexture *renderTexture;
+
 //开始录制
 - (bool)startRecording;
 //结束录制
@@ -49,5 +51,11 @@
 
 - (void)recordingFinished:(NSString*)outputPath;
 - (void)recordingFaild:(NSError *)error;
+
+@end
+
+
+
+@interface CustomRenderTexture : CCRenderTexture
 
 @end

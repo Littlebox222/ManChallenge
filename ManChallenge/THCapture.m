@@ -12,6 +12,40 @@
 
 static NSString* const kFileName=@"output.mp4";
 
+
+
+@interface CustomRenderTexture()
+
+
+@end
+
+
+@implementation CustomRenderTexture
+
+- (void)draw {
+    
+    [super draw];
+    
+    const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"Mask.fsh"] encoding:NSUTF8StringEncoding error:nil] UTF8String];
+    self.shaderProgram = [[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource];
+    
+    [self.shaderProgram addAttribute:kCCAttributeNameColor index:kCCVertexAttrib_Color];
+    [self.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
+    [self.shaderProgram link];
+    [self.shaderProgram updateUniforms];
+    
+//    int colorRampUniformLocation = glGetUniformLocation(render.shaderProgram->_program, "inputImageTexture");
+//    glUniform1i(colorRampUniformLocation, 1);
+    
+    [self.shaderProgram use];
+    
+    NSLog(@"~~~~~");
+}
+
+@end
+
+
+
 @interface THCapture()
 //配置录制环境
 - (BOOL)setUpWriter;
@@ -84,28 +118,15 @@ static NSString* const kFileName=@"output.mp4";
     }
 }
 
--(CCRenderTexture*)saveScreenToRenderTexture {
+-(void)saveScreenToRenderTexture {
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    CCRenderTexture* render = [CCRenderTexture renderTextureWithWidth:winSize.width height:winSize.height];
     
-    [render beginWithClear:0.2f g:0.2f b:0.2f a:1.0f];
-    [[CCDirector sharedDirector] drawScene];
-    [render end];
-    return render;
-}
-
--(CGImageRef)drawSample
-{
-    CCRenderTexture* render = [self saveScreenToRenderTexture];
+    [self.renderTexture beginWithClear:0.0f g:0.0f b:0.0f a:1.0f];
     
-//    [render newGLubyteBuffer];
-    
-    return nil;
-    
-    CGImageRef imageRef = [render newCGImage];
-
-    return imageRef;
+    [self.renderTexture.sprite.shaderProgram use];
+    [[[CCDirector sharedDirector] runningScene] visit];
+    [self.renderTexture end];
 }
 
 - (CVPixelBufferRef) newPixelBufferFromCGImage: (CGImageRef) image
@@ -142,6 +163,8 @@ static NSString* const kFileName=@"output.mp4";
     return pxbuffer;
 }
 
+
+
 - (void)drawFrame
 {
     
@@ -151,7 +174,28 @@ static NSString* const kFileName=@"output.mp4";
         
         //CGImageRef cgImage = [self drawSample];
         
-        CCRenderTexture* render = [self saveScreenToRenderTexture];
+        [self saveScreenToRenderTexture];
+        
+//        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//        
+//        
+//        const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"Mask.fsh"] encoding:NSUTF8StringEncoding error:nil] UTF8String];
+//        render.sprite.shaderProgram = [[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource];
+//        
+//        [render.sprite.shaderProgram addAttribute:kCCAttributeNameColor index:kCCVertexAttrib_Color];
+//        [render.sprite.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
+//        [render.sprite.shaderProgram link];
+//        [render.sprite.shaderProgram updateUniforms];
+//        
+//        int colorRampUniformLocation = glGetUniformLocation(render.sprite.shaderProgram->_program, "inputImageTexture");
+//        glUniform1i(colorRampUniformLocation, 1);
+//        
+//        [render.shaderProgram use];
+//        
+//        [render.sprite draw];
+//        
+//        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         
         
         if (_recording) {
@@ -179,7 +223,7 @@ static NSString* const kFileName=@"output.mp4";
                 CVPixelBufferLockBaseAddress( pixelBuffer, 0 );
                 GLubyte* destPixels = (GLubyte *)CVPixelBufferGetBaseAddress(pixelBuffer);
 
-                [render newGLubyteBuffer:destPixels];
+                [self.renderTexture newGLubyteBuffer:destPixels];
                 
                 //CFDataGetBytes(image, CFRangeMake(0, CFDataGetLength(image)), destPixels);
                 
@@ -203,9 +247,12 @@ static NSString* const kFileName=@"output.mp4";
     }
 }
 
+
 /*
 - (void)drawFrame
 {
+    CGImageRef cgImage = [self drawSample];
+    return;
     if (!_writing) {
         
         _writing = true;
@@ -247,8 +294,8 @@ static NSString* const kFileName=@"output.mp4";
         });
     }
 }
-
 */
+
 
 - (NSString*)tempFilePath {
 
@@ -301,7 +348,7 @@ static NSString* const kFileName=@"output.mp4";
 	NSParameterAssert(videoWriterInput);
 	videoWriterInput.expectsMediaDataInRealTime = YES;
 	NSDictionary* bufferAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-									  [NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
+									  [NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
 	
 	avAdaptor = [[AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput sourcePixelBufferAttributes:bufferAttributes] retain];
 	

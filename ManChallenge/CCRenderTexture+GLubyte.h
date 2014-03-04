@@ -6,4 +6,6 @@
 
 - (BOOL)newGLubyteBuffer:(GLubyte *)buffer;
 
+-(CGImageRef) newCGImageCustom;
+
 @end

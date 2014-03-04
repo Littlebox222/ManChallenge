@@ -17,6 +17,8 @@
 		ADB5933218B6FE02003AB607 /* THCaptureUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5933118B6FE02003AB607 /* THCaptureUtilities.m */; };
 		ADD7743C18BDF03C00F4209A /* THCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7743B18BDF03C00F4209A /* THCapture.m */; };
 		ADD7744318BF2F5800F4209A /* CCRenderTexture+GLubyte.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7744218BF2F5800F4209A /* CCRenderTexture+GLubyte.m */; };
+		ADD7744518C085EB00F4209A /* Mask.fsh in Sources */ = {isa = PBXBuildFile; fileRef = ADD7744418C085EB00F4209A /* Mask.fsh */; };
+		ADD7744618C08E4A00F4209A /* Mask.fsh in Resources */ = {isa = PBXBuildFile; fileRef = ADD7744418C085EB00F4209A /* Mask.fsh */; };
 		ADD86B9B18AA3602008BBB32 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */; };
 		ADD86B9D18AA3602008BBB32 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */; };
 		ADD86B9F18AA3602008BBB32 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9E18AA3602008BBB32 /* OpenAL.framework */; };
@@ -173,6 +175,7 @@
 		ADD7743B18BDF03C00F4209A /* THCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCapture.m; sourceTree = "<group>"; };
 		ADD7744118BF2F5800F4209A /* CCRenderTexture+GLubyte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCRenderTexture+GLubyte.h"; sourceTree = "<group>"; };
 		ADD7744218BF2F5800F4209A /* CCRenderTexture+GLubyte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCRenderTexture+GLubyte.m"; sourceTree = "<group>"; };
+		ADD7744418C085EB00F4209A /* Mask.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Mask.fsh; sourceTree = "<group>"; };
 		ADD86B9718AA3602008BBB32 /* ManChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -550,6 +553,7 @@
 		ADD86BAF18AA3603008BBB32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ADD7744418C085EB00F4209A /* Mask.fsh */,
 				ADB5913D18B1F9F3003AB607 /* game_music.mp3 */,
 				ADB5913E18B1F9F3003AB607 /* game_over.mp3 */,
 				ADD86D5118AA4112008BBB32 /* bullet.png */,
@@ -985,6 +989,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD7744618C08E4A00F4209A /* Mask.fsh in Resources */,
 				ADD86BC118AA3603008BBB32 /* Icon.png in Resources */,
 				ADD86D5018AA3C74008BBB32 /* player@2x.png in Resources */,
 				ADD86D5418AA4112008BBB32 /* bullet@2x.png in Resources */,
@@ -1128,6 +1133,7 @@
 				ADD86BF518AA3603008BBB32 /* CCAnimationCache.m in Sources */,
 				ADD86C1718AA3603008BBB32 /* CCGLProgram.m in Sources */,
 				ADD86D0718AA3605008BBB32 /* SimpleAudioEngine.m in Sources */,
+				ADD7744518C085EB00F4209A /* Mask.fsh in Sources */,
 				ADD86CB918AA3604008BBB32 /* CCTouchDispatcher.m in Sources */,
 				ADD86C3C18AA3604008BBB32 /* CCNode.m in Sources */,
 			);

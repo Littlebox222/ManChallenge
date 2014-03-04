@@ -10,29 +10,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ManChallenge/THCapture.m"
-            timestampString = "415184328.169192"
+            timestampString = "415527897.496642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-drawSample"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-draw"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ManChallenge/CCRenderTexture+GLubyte.m"
-            timestampString = "415191381.929709"
+            filePath = "ManChallenge/THCapture.m"
+            timestampString = "415634866.298806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-newGLubyteBuffer:"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "-drawFrame"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[THCapture drawFrame]"
+                  moduleName = "ManChallenge"
+                  urlString = "file:///Users/littlebox222/workspace/ManChallenge/ManChallenge/THCapture.m"
+                  timestampString = "415626327.12292"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
+                  offsetFromSymbolStart = "518">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[THCapture drawFrame]"
+                  moduleName = "ManChallenge"
+                  urlString = "file:///Users/littlebox222/workspace/ManChallenge/ManChallenge/THCapture.m"
+                  timestampString = "415626329.832308"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
+                  offsetFromSymbolStart = "520">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
