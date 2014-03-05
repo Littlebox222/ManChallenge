@@ -18,7 +18,6 @@
 		ADD7743C18BDF03C00F4209A /* THCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7743B18BDF03C00F4209A /* THCapture.m */; };
 		ADD7744318BF2F5800F4209A /* CCRenderTexture+GLubyte.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7744218BF2F5800F4209A /* CCRenderTexture+GLubyte.m */; };
 		ADD7744518C085EB00F4209A /* Mask.fsh in Sources */ = {isa = PBXBuildFile; fileRef = ADD7744418C085EB00F4209A /* Mask.fsh */; };
-		ADD7744618C08E4A00F4209A /* Mask.fsh in Resources */ = {isa = PBXBuildFile; fileRef = ADD7744418C085EB00F4209A /* Mask.fsh */; };
 		ADD86B9B18AA3602008BBB32 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9A18AA3602008BBB32 /* QuartzCore.framework */; };
 		ADD86B9D18AA3602008BBB32 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9C18AA3602008BBB32 /* OpenGLES.framework */; };
 		ADD86B9F18AA3602008BBB32 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD86B9E18AA3602008BBB32 /* OpenAL.framework */; };
@@ -992,9 +991,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				C109097118C5B43400674C27 /* CSEColorRamp.fsh in Resources */,
-
 				ADD86BC118AA3603008BBB32 /* Icon.png in Resources */,
 				ADD86D5018AA3C74008BBB32 /* player@2x.png in Resources */,
 				ADD86D5418AA4112008BBB32 /* bullet@2x.png in Resources */,
@@ -1208,7 +1205,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F9756B61-9944-40AC-BFA5-D114F1B012F7";
+				PROVISIONING_PROFILE = "13C2B920-3545-496E-A38D-C6401B7E0B51";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1233,7 +1230,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F9756B61-9944-40AC-BFA5-D114F1B012F7";
+				PROVISIONING_PROFILE = "13C2B920-3545-496E-A38D-C6401B7E0B51";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
