@@ -23,7 +23,9 @@ static NSString* const kFileName=@"output.mp4";
 - (void)drawFrame;
 @end
 
-@implementation THCapture
+@implementation THCapture{
+    int colorRampUniformLocation;
+}
 @synthesize frameRate=_frameRate;
 @synthesize delegate=_delegate;
 
@@ -88,10 +90,68 @@ static NSString* const kFileName=@"output.mp4";
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
     CCRenderTexture* render = [CCRenderTexture renderTextureWithWidth:winSize.width height:winSize.height];
+//    //===========================
+//    
+//    const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"CSEColorRamp.fsh"]
+//                                                                         encoding:NSUTF8StringEncoding error:nil] UTF8String];
+//    render.sprite.shaderProgram = [[[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource] autorelease];
+//    [render.sprite.shaderProgram addAttribute:kCCAttributeNamePosition index:kCCVertexAttrib_Position];
+//    [render.sprite.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
+//    [render.sprite.shaderProgram link];
+//    [render.sprite.shaderProgram updateUniforms];
+//    
+//    // 3
+//    colorRampUniformLocation = glGetUniformLocation(render.sprite.shaderProgram->_program, "u_colorRampTexture");
+//    glUniform1i(colorRampUniformLocation, 1);
+//    
+//    //    // 4
+//    //    colorRampTexture = [[CCTextureCache sharedTextureCache] addImage:@"colorRamp.png"];
+//    //    [colorRampTexture setAliasTexParameters];
+//    
+//    // 5
+//    [render.sprite.shaderProgram use];
+//    glActiveTexture(GL_TEXTURE1);
+//    //    glBindTexture(GL_TEXTURE_2D, [colorRampTexture name]);
+//    glActiveTexture(GL_TEXTURE0);
+//    
+//    //===========================
     
     [render beginWithClear:0.2f g:0.2f b:0.2f a:1.0f];
     [[CCDirector sharedDirector] drawScene];
     [render end];
+    
+    
+    //*******************************
+    
+    CCSprite *tmp = [CCSprite spriteWithTexture:render.sprite.texture];//[[CCSprite alloc] initWithTexture:render.sprite.texture];
+
+    tmp.position = ccp(winSize.width/2, winSize.height/2);
+    
+    //===========================
+    const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"CSEColorRamp.fsh"]
+                                                                         encoding:NSUTF8StringEncoding error:nil] UTF8String];
+    tmp.shaderProgram = [[[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource] autorelease];
+    [tmp.shaderProgram addAttribute:kCCAttributeNamePosition index:kCCVertexAttrib_Position];
+    [tmp.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
+    [tmp.shaderProgram link];
+    [tmp.shaderProgram updateUniforms];
+    
+    // 3
+    colorRampUniformLocation = glGetUniformLocation(tmp.shaderProgram->_program, "u_colorRampTexture");
+    glUniform1i(colorRampUniformLocation, 1);
+    
+    // 5
+    [tmp.shaderProgram use];
+    glActiveTexture(GL_TEXTURE1);
+    glActiveTexture(GL_TEXTURE0);
+    
+    //===========================
+    
+    [render begin];
+    [tmp visit];
+    [render end];
+    
+    
     return render;
 }
 
@@ -154,6 +214,8 @@ static NSString* const kFileName=@"output.mp4";
         CCRenderTexture* render = [self saveScreenToRenderTexture];
         
         
+        
+        
         if (_recording) {
             
             float millisElapsed = [[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0;
@@ -179,6 +241,10 @@ static NSString* const kFileName=@"output.mp4";
                 CVPixelBufferLockBaseAddress( pixelBuffer, 0 );
                 GLubyte* destPixels = (GLubyte *)CVPixelBufferGetBaseAddress(pixelBuffer);
 
+                
+//                [render visit];
+                
+                
                 [render newGLubyteBuffer:destPixels];
                 
                 //CFDataGetBytes(image, CFRangeMake(0, CFDataGetLength(image)), destPixels);
@@ -301,7 +367,7 @@ static NSString* const kFileName=@"output.mp4";
 	NSParameterAssert(videoWriterInput);
 	videoWriterInput.expectsMediaDataInRealTime = YES;
 	NSDictionary* bufferAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-									  [NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
+									  [NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
 	
 	avAdaptor = [[AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput sourcePixelBufferAttributes:bufferAttributes] retain];
 	

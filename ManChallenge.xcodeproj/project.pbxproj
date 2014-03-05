@@ -155,6 +155,7 @@
 		ADD86D5018AA3C74008BBB32 /* player@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD86D4E18AA3C74008BBB32 /* player@2x.png */; };
 		ADD86D5318AA4112008BBB32 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD86D5118AA4112008BBB32 /* bullet.png */; };
 		ADD86D5418AA4112008BBB32 /* bullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD86D5218AA4112008BBB32 /* bullet@2x.png */; };
+		C109097118C5B43400674C27 /* CSEColorRamp.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C109097018C5B43400674C27 /* CSEColorRamp.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -458,6 +459,7 @@
 		ADD86D4E18AA3C74008BBB32 /* player@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "player@2x.png"; path = "Resources/player@2x.png"; sourceTree = "<group>"; };
 		ADD86D5118AA4112008BBB32 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bullet.png; path = Resources/bullet.png; sourceTree = "<group>"; };
 		ADD86D5218AA4112008BBB32 /* bullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bullet@2x.png"; path = "Resources/bullet@2x.png"; sourceTree = "<group>"; };
+		C109097018C5B43400674C27 /* CSEColorRamp.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CSEColorRamp.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +526,7 @@
 		ADD86BAE18AA3603008BBB32 /* ManChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C109097018C5B43400674C27 /* CSEColorRamp.fsh */,
 				ADD86D3F18AA3605008BBB32 /* AppDelegate.h */,
 				ADD86D4018AA3605008BBB32 /* AppDelegate.m */,
 				ADD7744118BF2F5800F4209A /* CCRenderTexture+GLubyte.h */,
@@ -985,6 +988,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C109097118C5B43400674C27 /* CSEColorRamp.fsh in Resources */,
 				ADD86BC118AA3603008BBB32 /* Icon.png in Resources */,
 				ADD86D5018AA3C74008BBB32 /* player@2x.png in Resources */,
 				ADD86D5418AA4112008BBB32 /* bullet@2x.png in Resources */,
@@ -1180,6 +1184,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: chao han (V5793YQWH9)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1196,6 +1201,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F9756B61-9944-40AC-BFA5-D114F1B012F7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1204,6 +1210,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: chao han (V5793YQWH9)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1219,6 +1226,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F9756B61-9944-40AC-BFA5-D114F1B012F7";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
