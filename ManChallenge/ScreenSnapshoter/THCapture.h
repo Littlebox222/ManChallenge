@@ -29,6 +29,8 @@
     //CALayer *_captureLayer;              //要绘制的目标layer
     NSUInteger  _frameRate;              //帧速
 //    id<THCaptureDelegate> _delegate;     //代理
+    
+    dispatch_queue_t qt;
 }
 @property(assign) NSUInteger frameRate;
 //@property(nonatomic, assign) CALayer *captureLayer;
@@ -37,7 +39,7 @@
 
 @property(assign) BOOL shouldStopRecording;
 
-@property(assign) CCRenderTexture *renderTexture;
+@property(nonatomic, retain) CCSprite *spriteBufferCache;
 
 //开始录制
 - (bool)startRecording;
@@ -51,11 +53,5 @@
 
 - (void)recordingFinished:(NSString*)outputPath;
 - (void)recordingFaild:(NSError *)error;
-
-@end
-
-
-
-@interface CustomRenderTexture : CCRenderTexture
 
 @end

@@ -26,7 +26,6 @@
 @synthesize bullets = _bullets;
 
 @synthesize capture = _capture;
-@synthesize renderTexture = _renderTexture;
 
 - (NSString*)filePath:(NSString*)fileName {
     
@@ -37,8 +36,6 @@
 }
 
 -(void)dealloc {
-    
-    [_renderTexture release];
     
     [_capture release];
     
@@ -88,46 +85,10 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"game_music.mp3"];
         
         
-        
-        self.renderTexture = [CCRenderTexture renderTextureWithWidth:size.width height:size.height];
-        _renderTexture.tag = 999;
-        _renderTexture.zOrder = 0;
-        [_renderTexture setScale:0.3];
-        [_renderTexture setAnchorPoint:ccp(0, 0)];
-        [_renderTexture setPosition:ccp(100, 300)];
-        
-        
-        
-        
-        //===========================
-        //shader
-        const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"Mask.fsh"]
-                                                                             encoding:NSUTF8StringEncoding error:nil] UTF8String];
-        _renderTexture.sprite.shaderProgram = [[[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource] autorelease];
-        [_renderTexture.sprite.shaderProgram addAttribute:kCCAttributeNamePosition index:kCCVertexAttrib_Position];
-        [_renderTexture.sprite.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
-        [_renderTexture.sprite.shaderProgram link];
-        [_renderTexture.sprite.shaderProgram updateUniforms];
-        
-        // 3
-        colorRampUniformLocation = glGetUniformLocation(_renderTexture.sprite.shaderProgram->_program, "u_colorRampTexture");
-        glUniform1i(colorRampUniformLocation, 1);
-        
-        // 5
-        [_renderTexture.sprite.shaderProgram use];
-        glActiveTexture(GL_TEXTURE1);
-        glActiveTexture(GL_TEXTURE0);
-        
-        //===========================
-        
-        [self addChild:_renderTexture];
-
-        
         // 录屏
         self.capture = [[[THCapture alloc] init] autorelease];
         _capture.frameRate = 60;
         _capture.delegate = self;
-        _capture.renderTexture = _renderTexture;
         [_capture startRecording];
 	}
     
@@ -193,14 +154,6 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
     
     [self updatePlayer:delta];
     
-    
-//    CCRenderTexture* render = (CCRenderTexture* )[self getChildByTag:999];
-//    
-//    [render beginWithClear:0.0f g:0.0f b:0.0f a:1.0f];
-//    [render.sprite.shaderProgram use];
-//    [[[CCDirector sharedDirector] runningScene] visit];
-//    [render end];
-    
     CGRect rect = _player.boundingBox;
     CGRect rect1 = CGRectMake(rect.origin.x + 11, rect.origin.y + 1, 8, 28);
     CGRect rect2 = CGRectMake(rect.origin.x +  4, rect.origin.y + 1, 7, 16);
@@ -230,9 +183,9 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"game_over.mp3"];
         
-        //         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
         [_capture stopRecording];
-        //         });
+
         
         CCScene *gameOverScene = [GameOverLayer sceneInitWithScore:_scoreLayer.livingTime andBestScore:_scoreLayer.bestTime];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];

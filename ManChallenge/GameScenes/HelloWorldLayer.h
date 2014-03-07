@@ -30,7 +30,6 @@
 
 @property (nonatomic, retain) THCapture *capture;
 
-@property (nonatomic, retain) CCRenderTexture *renderTexture;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

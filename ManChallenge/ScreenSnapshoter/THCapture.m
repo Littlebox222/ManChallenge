@@ -13,39 +13,6 @@
 static NSString* const kFileName=@"output.mp4";
 
 
-
-@interface CustomRenderTexture()
-
-
-@end
-
-
-@implementation CustomRenderTexture
-
-- (void)draw {
-    
-    [super draw];
-    
-    const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"Mask.fsh"] encoding:NSUTF8StringEncoding error:nil] UTF8String];
-    self.shaderProgram = [[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource];
-    
-    [self.shaderProgram addAttribute:kCCAttributeNameColor index:kCCVertexAttrib_Color];
-    [self.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
-    [self.shaderProgram link];
-    [self.shaderProgram updateUniforms];
-    
-//    int colorRampUniformLocation = glGetUniformLocation(render.shaderProgram->_program, "inputImageTexture");
-//    glUniform1i(colorRampUniformLocation, 1);
-    
-    [self.shaderProgram use];
-    
-    NSLog(@"~~~~~");
-}
-
-@end
-
-
-
 @interface THCapture()
 //配置录制环境
 - (BOOL)setUpWriter;
@@ -62,6 +29,7 @@ static NSString* const kFileName=@"output.mp4";
 }
 @synthesize frameRate=_frameRate;
 @synthesize delegate=_delegate;
+@synthesize spriteBufferCache = _spriteBufferCache;
 
 @synthesize shouldStopRecording = _shouldStopRecording;
 
@@ -69,15 +37,42 @@ static NSString* const kFileName=@"output.mp4";
 {
     self = [super init];
     if (self) {
-        _frameRate=20;//默认帧率为10
+        _frameRate = 1;//默认帧率为10
         _shouldStopRecording = NO;
         _recording = NO;
+        
+        
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        self.spriteBufferCache = [[[CCSprite alloc] initWithFile:@"Default.png" rect:CGRectMake(0, 0, winSize.width, winSize.height)] autorelease];
+        _spriteBufferCache.position = ccp(winSize.width/2, winSize.height/2);
+        
+        const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"CSEColorRamp.fsh"]
+                                                                             encoding:NSUTF8StringEncoding error:nil] UTF8String];
+        
+        //    const GLchar * vertexSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"FlipShader.fsh"]
+        //                                                                         encoding:NSUTF8StringEncoding error:nil] UTF8String];
+        //    tmp.shaderProgram = [[[CCGLProgram alloc] initWithVertexShaderByteArray:vertexSource fragmentShaderByteArray:fragmentSource] autorelease];
+        
+        _spriteBufferCache.shaderProgram = [[[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource] autorelease];
+        [_spriteBufferCache.shaderProgram addAttribute:kCCAttributeNamePosition index:kCCVertexAttrib_Position];
+        [_spriteBufferCache.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
+        [_spriteBufferCache.shaderProgram link];
+        [_spriteBufferCache.shaderProgram updateUniforms];
+        
+        // 5
+        [_spriteBufferCache.shaderProgram use];
+        glActiveTexture(GL_TEXTURE0);
+        
+        qt = dispatch_queue_create("com.sunsetlakesoftware.GPUImage.movieWritingQueue", NULL);
     }
     
     return self;
 }
 
 - (void)dealloc {
+    
+    [_spriteBufferCache release];
+    
 	[self cleanupWriter];
 	[super dealloc];
 }
@@ -125,42 +120,26 @@ static NSString* const kFileName=@"output.mp4";
     CGSize winSize = [CCDirector sharedDirector].winSize;
 
     CCRenderTexture* render = [CCRenderTexture renderTextureWithWidth:winSize.width height:winSize.height];
+    CCRenderTexture* render1 = [CCRenderTexture renderTextureWithWidth:winSize.width height:winSize.height];
     
-    [render beginWithClear:0.2f g:0.2f b:0.2f a:1.0f];
+    [render1 beginWithClear:0.0f g:0.0f b:0.0f a:1.0f];
     [[CCDirector sharedDirector] drawScene];
-    [render end];
-    
+    [render1 end];
     
     //*******************************
     
-    CCSprite *tmp = [CCSprite spriteWithTexture:render.sprite.texture];//[[CCSprite alloc] initWithTexture:render.sprite.texture];
-    tmp.scaleY = -1;
-    tmp.position = ccp(winSize.width/2, winSize.height/2);
     
-    //===========================
-    const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"CSEColorRamp.fsh"]
-                                                                         encoding:NSUTF8StringEncoding error:nil] UTF8String];
-    tmp.shaderProgram = [[[CCGLProgram alloc] initWithVertexShaderByteArray:ccPositionTextureA8Color_vert fragmentShaderByteArray:fragmentSource] autorelease];
-    [tmp.shaderProgram addAttribute:kCCAttributeNamePosition index:kCCVertexAttrib_Position];
-    [tmp.shaderProgram addAttribute:kCCAttributeNameTexCoord index:kCCVertexAttrib_TexCoords];
-    [tmp.shaderProgram link];
-    [tmp.shaderProgram updateUniforms];
+    //CCSprite *tmp = [CCSprite spriteWithTexture:render1.sprite.texture];//[[CCSprite alloc] initWithTexture:render.sprite.texture];
+    [self.spriteBufferCache setTexture:render1.sprite.texture];
     
-    // 3
-    colorRampUniformLocation = glGetUniformLocation(tmp.shaderProgram->_program, "u_colorRampTexture");
-    glUniform1i(colorRampUniformLocation, 1);
     
-    // 5
-    [tmp.shaderProgram use];
-    glActiveTexture(GL_TEXTURE1);
-    glActiveTexture(GL_TEXTURE0);
+    
     
     //===========================
     
     [render begin];
-    [tmp visit];
+    [_spriteBufferCache visit];
     [render end];
-    
     
     return render;
 }
@@ -174,59 +153,66 @@ static NSString* const kFileName=@"output.mp4";
         
         _writing = true;
         
-        //CGImageRef cgImage = [self drawSample];
         
         CCRenderTexture* render = [self saveScreenToRenderTexture];
 
-        if (_recording) {
-            
-            float millisElapsed = [[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0;
-            CMTime time = CMTimeMake((int)millisElapsed, 1000);
-            
-            //write
-            if (![videoWriterInput isReadyForMoreMediaData])
-            {
-                NSLog(@"Not ready for video data");
-            }
-            else
-            {
-                CVPixelBufferRef pixelBuffer = NULL;
-                //CFDataRef image = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
-                
-                int status = CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, avAdaptor.pixelBufferPool, &pixelBuffer);
-                if(status != 0)
-                {
-                    //could not get a buffer from the pool
-                    NSLog(@"Error creating pixel buffer:  status=%d", status);
-                }
-                // set image data into pixel buffer
-                CVPixelBufferLockBaseAddress( pixelBuffer, 0 );
-                GLubyte* destPixels = (GLubyte *)CVPixelBufferGetBaseAddress(pixelBuffer);
-
-
-                
-                [render newGLubyteBuffer:destPixels];
-
-                
-                //CFDataGetBytes(image, CFRangeMake(0, CFDataGetLength(image)), destPixels);
-                
-                if(status == 0)
-                {
-                    BOOL success = [avAdaptor appendPixelBuffer:pixelBuffer withPresentationTime:time];
-                    if (!success)
-                        NSLog(@"Warning:  Unable to write buffer to video");
-                }
-                
-                //clean up
-                CVPixelBufferUnlockBaseAddress( pixelBuffer, 0 );
-                CVPixelBufferRelease( pixelBuffer );
-                //CFRelease(image);
-            }
-        }
         
-        //CGImageRelease(cgImage);
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        _writing = false;
+            
+            if (_recording) {
+                
+                float millisElapsed = [[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0;
+                CMTime time = CMTimeMake((int)millisElapsed, 1000);
+                
+                //write
+                if (![videoWriterInput isReadyForMoreMediaData]) {
+                    
+                    NSLog(@"Not ready for video data");
+                }
+                else
+                {
+                    CVPixelBufferRef pixelBuffer = NULL;
+                    
+                    int status = CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, avAdaptor.pixelBufferPool, &pixelBuffer);
+                    
+                    if(status != 0) {
+                        NSLog(@"Error creating pixel buffer:  status=%d", status);
+                    }
+                    // set image data into pixel buffer
+                    CVPixelBufferLockBaseAddress( pixelBuffer, 0 );
+                    GLubyte* destPixels = (GLubyte *)CVPixelBufferGetBaseAddress(pixelBuffer);
+                    
+                    
+                    [render newGLubyteBuffer:destPixels];
+                    
+                    dispatch_async(qt, ^{
+                        
+                        if(status == 0) {
+                            
+                            BOOL success = [avAdaptor appendPixelBuffer:pixelBuffer withPresentationTime:time];
+                            if (!success)
+                                NSLog(@"Warning:  Unable to write buffer to video");
+                        }
+                        
+                        CVPixelBufferUnlockBaseAddress( pixelBuffer, 0 );
+                        CVPixelBufferRelease( pixelBuffer );
+                        
+                    });
+                    
+                    //clean up
+//                    CVPixelBufferUnlockBaseAddress( pixelBuffer, 0 );
+//                    CVPixelBufferRelease( pixelBuffer );
+                }
+            }
+            
+            _writing = false;
+            
+//        });
+        
+        
+        
+        
     }
 }
 
