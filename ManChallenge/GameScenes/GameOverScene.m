@@ -1,20 +1,21 @@
 //
-//  GameOverLayer.m
+//  GameOverScene.m
 //  ManChallenge
 //
 //  Created by Littlebox222 on 14-2-13.
 //  Copyright 2014年 Littlebox222. All rights reserved.
 //
 
-#import "GameOverLayer.h"
-#import "HelloWorldLayer.h"
+#import "GameOverScene.h"
 
-@implementation GameOverLayer
+#import "GameScene.h"
+
+@implementation GameOverScene
 
 +(CCScene *) sceneInitWithScore:(double)score andBestScore:(double)bestScore {
     
     CCScene *scene = [CCScene node];
-    GameOverLayer *layer = [[[GameOverLayer alloc] initWithScore:score andBestScore:bestScore] autorelease];
+    GameOverScene *layer = [[[GameOverScene alloc] initWithScore:score andBestScore:bestScore] autorelease];
     [scene addChild: layer];
     return scene;
 }
@@ -67,7 +68,7 @@
 
 - (void)play {
     
-    [[CCDirector sharedDirector] replaceScene:[HelloWorldLayer scene]];
+    [[CCDirector sharedDirector] replaceScene:[[GameScene node] initWithBackgroundFile:@"Default.png"]];
 }
 
 - (void)share {

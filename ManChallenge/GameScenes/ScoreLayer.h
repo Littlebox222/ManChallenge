@@ -11,13 +11,13 @@
 
 @interface ScoreLayer : CCLayer {
     
-    CCLabelTTF *labelLivingTime;
-    CCLabelTTF *labelBestTime;
+    CCLabelTTF *_labelLivingTime;
+    CCLabelTTF *_labelBestTime;
 }
 
 @property (nonatomic, assign) double livingTime;
 @property (nonatomic, assign) double bestTime;
+@property (nonatomic, assign) BOOL isGameOver;
 
-- (void)scoreTimeChanged:(ccTime)dt;
 
 @end

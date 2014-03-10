@@ -13,6 +13,7 @@
 
 @synthesize livingTime = _livingTime;
 @synthesize bestTime = _bestTime;
+@synthesize isGameOver = _isGameOver;
 
 - (NSString*)filePath:(NSString*)fileName {
     
@@ -28,19 +29,19 @@
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        labelLivingTime = [CCLabelTTF labelWithString:@"AppleGothic" fontName:@"AppleGothic" fontSize:14];
-        labelLivingTime.color = ccc3(255,255,255);
+        _labelLivingTime = [CCLabelTTF labelWithString:@"AppleGothic" fontName:@"AppleGothic" fontSize:14];
+        _labelLivingTime.color = ccc3(255,255,255);
         int margin = 10;
-        labelLivingTime.position = ccp(winSize.width - (labelLivingTime.contentSize.width/2) - margin - 20, labelLivingTime.contentSize.height/2 + margin);
-        [self addChild:labelLivingTime];
+        _labelLivingTime.position = ccp(winSize.width - (_labelLivingTime.contentSize.width/2) - margin - 20, _labelLivingTime.contentSize.height/2 + margin);
+        [self addChild:_labelLivingTime];
         
         
         _livingTime = 0.0f;
         
-        labelBestTime = [CCLabelTTF labelWithString:@"AppleGothic" fontName:@"AppleGothic" fontSize:14];
-        labelBestTime.color = ccc3(255,255,255);
-        labelBestTime.position = ccp(55, labelBestTime.contentSize.height/2 + margin);
-        [self addChild:labelBestTime];
+        _labelBestTime = [CCLabelTTF labelWithString:@"AppleGothic" fontName:@"AppleGothic" fontSize:14];
+        _labelBestTime.color = ccc3(255,255,255);
+        _labelBestTime.position = ccp(55, _labelBestTime.contentSize.height/2 + margin);
+        [self addChild:_labelBestTime];
         
         NSString* fileName = [self filePath:@"bestTime.plist"];
         if ([[NSFileManager defaultManager]fileExistsAtPath:fileName]) {
@@ -49,20 +50,25 @@
             _bestTime = [[data objectAtIndex:0] floatValue];
             [data release];
             
-            [labelBestTime setString:[NSString stringWithFormat:@"Best time: %.1f", _bestTime]];
+            [_labelBestTime setString:[NSString stringWithFormat:@"Best time: %.1f", _bestTime]];
         }
         
-        //TODO:错误处理
+        _isGameOver = NO;
+        
+        [self scheduleUpdate];
     }
     
     return self;
 }
 
-- (void)scoreTimeChanged:(ccTime)dt {
+- (void)update:(ccTime)delta {
     
-    _livingTime += dt;
-    
-    [labelLivingTime setString:[NSString stringWithFormat:@"Living time: %.1f", _livingTime]];
+    if (!_isGameOver) {
+        
+        _livingTime += delta;
+        
+        [_labelLivingTime setString:[NSString stringWithFormat:@"Living time: %.1f", _livingTime]];
+    }
 }
 
 @end

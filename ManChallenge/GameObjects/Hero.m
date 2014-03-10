@@ -10,12 +10,12 @@
 #import "SimpleAudioEngine.h"
 #import "Bullet.h"
 
-
 @implementation Hero
 
 @synthesize destroyed = _destroyed;
 @synthesize posPerSecByAccX = _posPerSecByAccX;
 @synthesize posPerSecByAccY = _posPerSecByAccY;
+
 
 - (id)initWithFile:(NSString *)filename
 {
@@ -24,6 +24,8 @@
     
     _destroyed = NO;
     self.tag = kTagHero;
+    
+    [self scheduleUpdate];
     
     return self;
 }

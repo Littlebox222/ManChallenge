@@ -8,6 +8,12 @@
 
 #import "GameObject.h"
 
-@interface Bullet : GameObject
+@interface Bullet : GameObject {
+    
+    NSMutableArray *_containArray;
+}
+
+
+- (id)initWithFile:(NSString *)filename andContainArray:(NSMutableArray *)containArray;
 
 @end

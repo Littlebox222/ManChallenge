@@ -19,4 +19,9 @@
 @property (nonatomic, assign) float posPerSecByAccX;
 @property (nonatomic, assign) float posPerSecByAccY;
 
+
+- (id)initWithFile:(NSString *)filename;
+- (void)handleCollisionWith:(GameObject *)gameObject;
+- (void)update:(ccTime)delta;
+
 @end

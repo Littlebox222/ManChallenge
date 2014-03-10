@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		AD9FCB4B18C9AA97004B308A /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB3918C9AA97004B308A /* GameObject.m */; };
-		AD9FCB4C18C9AA97004B308A /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB3C18C9AA97004B308A /* GameOverLayer.m */; };
-		AD9FCB4D18C9AA97004B308A /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB3E18C9AA97004B308A /* HelloWorldLayer.m */; };
-		AD9FCB4E18C9AA97004B308A /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB4018C9AA97004B308A /* IntroLayer.m */; };
+		AD9FCB4C18C9AA97004B308A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB3C18C9AA97004B308A /* GameOverScene.m */; };
 		AD9FCB4F18C9AA97004B308A /* ScoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB4218C9AA97004B308A /* ScoreLayer.m */; };
 		AD9FCB5018C9AA97004B308A /* CCRenderTexture+GLubyte.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB4518C9AA97004B308A /* CCRenderTexture+GLubyte.m */; };
 		AD9FCB5118C9AA97004B308A /* CSEColorRamp.fsh in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB4618C9AA97004B308A /* CSEColorRamp.fsh */; };
-		AD9FCB5218C9AA97004B308A /* THCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB4818C9AA97004B308A /* THCapture.m */; };
-		AD9FCB5318C9AA97004B308A /* THCaptureUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB4A18C9AA97004B308A /* THCaptureUtilities.m */; };
 		AD9FCB5618C9AFA0004B308A /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB5518C9AFA0004B308A /* Hero.m */; };
 		AD9FCB5918C9B0B8004B308A /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB5818C9B0B8004B308A /* Bullet.m */; };
+		AD9FCB9E18C9CAD4004B308A /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB9D18C9CAD4004B308A /* GameScene.m */; };
+		AD9FCBA118C9D3C7004B308A /* LevelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCBA018C9D3C7004B308A /* LevelLayer.m */; };
+		AD9FCBA418CDB43A004B308A /* Snapshoter.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCBA318CDB43A004B308A /* Snapshoter.m */; };
+		AD9FCBA718CDC00D004B308A /* SnapshoterUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCBA618CDC00D004B308A /* SnapshoterUtilities.m */; };
 		ADB5913F18B1F9F3003AB607 /* game_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADB5913D18B1F9F3003AB607 /* game_music.mp3 */; };
 		ADB5914018B1F9F3003AB607 /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADB5913E18B1F9F3003AB607 /* game_over.mp3 */; };
 		ADB5915518B4A572003AB607 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB5915418B4A572003AB607 /* CoreVideo.framework */; };
@@ -164,26 +164,26 @@
 /* Begin PBXFileReference section */
 		AD9FCB3818C9AA97004B308A /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		AD9FCB3918C9AA97004B308A /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
-		AD9FCB3B18C9AA97004B308A /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
-		AD9FCB3C18C9AA97004B308A /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
-		AD9FCB3D18C9AA97004B308A /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		AD9FCB3E18C9AA97004B308A /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
-		AD9FCB3F18C9AA97004B308A /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		AD9FCB4018C9AA97004B308A /* IntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		AD9FCB3B18C9AA97004B308A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		AD9FCB3C18C9AA97004B308A /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		AD9FCB4118C9AA97004B308A /* ScoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreLayer.h; sourceTree = "<group>"; };
 		AD9FCB4218C9AA97004B308A /* ScoreLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreLayer.m; sourceTree = "<group>"; };
 		AD9FCB4418C9AA97004B308A /* CCRenderTexture+GLubyte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCRenderTexture+GLubyte.h"; sourceTree = "<group>"; };
 		AD9FCB4518C9AA97004B308A /* CCRenderTexture+GLubyte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCRenderTexture+GLubyte.m"; sourceTree = "<group>"; };
 		AD9FCB4618C9AA97004B308A /* CSEColorRamp.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CSEColorRamp.fsh; sourceTree = "<group>"; };
-		AD9FCB4718C9AA97004B308A /* THCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCapture.h; sourceTree = "<group>"; };
-		AD9FCB4818C9AA97004B308A /* THCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCapture.m; sourceTree = "<group>"; };
-		AD9FCB4918C9AA97004B308A /* THCaptureUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCaptureUtilities.h; sourceTree = "<group>"; };
-		AD9FCB4A18C9AA97004B308A /* THCaptureUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCaptureUtilities.m; sourceTree = "<group>"; };
 		AD9FCB5418C9AFA0004B308A /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
 		AD9FCB5518C9AFA0004B308A /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
 		AD9FCB5718C9B0B8004B308A /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		AD9FCB5818C9B0B8004B308A /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 		AD9FCB9B18C9BE7E004B308A /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		AD9FCB9C18C9CAD4004B308A /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		AD9FCB9D18C9CAD4004B308A /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		AD9FCB9F18C9D3C7004B308A /* LevelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLayer.h; sourceTree = "<group>"; };
+		AD9FCBA018C9D3C7004B308A /* LevelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelLayer.m; sourceTree = "<group>"; };
+		AD9FCBA218CDB43A004B308A /* Snapshoter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshoter.h; sourceTree = "<group>"; };
+		AD9FCBA318CDB43A004B308A /* Snapshoter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshoter.m; sourceTree = "<group>"; };
+		AD9FCBA518CDC00D004B308A /* SnapshoterUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshoterUtilities.h; sourceTree = "<group>"; };
+		AD9FCBA618CDC00D004B308A /* SnapshoterUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapshoterUtilities.m; sourceTree = "<group>"; };
 		ADB5913D18B1F9F3003AB607 /* game_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_music.mp3; path = Resources/game_music.mp3; sourceTree = "<group>"; };
 		ADB5913E18B1F9F3003AB607 /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_over.mp3; path = Resources/game_over.mp3; sourceTree = "<group>"; };
 		ADB5915418B4A572003AB607 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -512,14 +512,14 @@
 		AD9FCB3A18C9AA97004B308A /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
-				AD9FCB3B18C9AA97004B308A /* GameOverLayer.h */,
-				AD9FCB3C18C9AA97004B308A /* GameOverLayer.m */,
-				AD9FCB3D18C9AA97004B308A /* HelloWorldLayer.h */,
-				AD9FCB3E18C9AA97004B308A /* HelloWorldLayer.m */,
-				AD9FCB3F18C9AA97004B308A /* IntroLayer.h */,
-				AD9FCB4018C9AA97004B308A /* IntroLayer.m */,
+				AD9FCB3B18C9AA97004B308A /* GameOverScene.h */,
+				AD9FCB3C18C9AA97004B308A /* GameOverScene.m */,
 				AD9FCB4118C9AA97004B308A /* ScoreLayer.h */,
 				AD9FCB4218C9AA97004B308A /* ScoreLayer.m */,
+				AD9FCB9F18C9D3C7004B308A /* LevelLayer.h */,
+				AD9FCBA018C9D3C7004B308A /* LevelLayer.m */,
+				AD9FCB9C18C9CAD4004B308A /* GameScene.h */,
+				AD9FCB9D18C9CAD4004B308A /* GameScene.m */,
 			);
 			path = GameScenes;
 			sourceTree = "<group>";
@@ -530,10 +530,10 @@
 				AD9FCB4618C9AA97004B308A /* CSEColorRamp.fsh */,
 				AD9FCB4418C9AA97004B308A /* CCRenderTexture+GLubyte.h */,
 				AD9FCB4518C9AA97004B308A /* CCRenderTexture+GLubyte.m */,
-				AD9FCB4918C9AA97004B308A /* THCaptureUtilities.h */,
-				AD9FCB4A18C9AA97004B308A /* THCaptureUtilities.m */,
-				AD9FCB4718C9AA97004B308A /* THCapture.h */,
-				AD9FCB4818C9AA97004B308A /* THCapture.m */,
+				AD9FCBA518CDC00D004B308A /* SnapshoterUtilities.h */,
+				AD9FCBA618CDC00D004B308A /* SnapshoterUtilities.m */,
+				AD9FCBA218CDB43A004B308A /* Snapshoter.h */,
+				AD9FCBA318CDB43A004B308A /* Snapshoter.m */,
 			);
 			path = ScreenSnapshoter;
 			sourceTree = "<group>";
@@ -1070,6 +1070,7 @@
 				ADD86C3918AA3604008BBB32 /* CCNode+Debug.m in Sources */,
 				ADD86C1418AA3603008BBB32 /* ccFPSImages.m in Sources */,
 				ADD86C9A18AA3604008BBB32 /* CCTMXXMLParser.m in Sources */,
+				AD9FCBA718CDC00D004B308A /* SnapshoterUtilities.m in Sources */,
 				ADD86D3118AA3605008BBB32 /* ray2.c in Sources */,
 				ADD86CCC18AA3604008BBB32 /* base64.c in Sources */,
 				ADD86BEF18AA3603008BBB32 /* CCActionTween.m in Sources */,
@@ -1081,7 +1082,6 @@
 				ADD86C4B18AA3604008BBB32 /* CCParticleSystemQuad.m in Sources */,
 				ADD86C0E18AA3603008BBB32 /* CCDrawNode.m in Sources */,
 				ADD86CA018AA3604008BBB32 /* CCTransitionPageTurn.m in Sources */,
-				AD9FCB4E18C9AA97004B308A /* IntroLayer.m in Sources */,
 				ADD86BD118AA3603008BBB32 /* CCActionCatmullRom.m in Sources */,
 				ADD86C4818AA3604008BBB32 /* CCParticleSystem.m in Sources */,
 				ADD86C9D18AA3604008BBB32 /* CCTransition.m in Sources */,
@@ -1095,6 +1095,7 @@
 				ADD86C3318AA3604008BBB32 /* CCMenuItem.m in Sources */,
 				ADD86BCE18AA3603008BBB32 /* CCActionCamera.m in Sources */,
 				ADD86D0018AA3604008BBB32 /* CDXPropertyModifierAction.m in Sources */,
+				AD9FCBA118C9D3C7004B308A /* LevelLayer.m in Sources */,
 				ADD86CD018AA3604008BBB32 /* CCArray.m in Sources */,
 				ADD86D2D18AA3605008BBB32 /* plane.c in Sources */,
 				ADD86CD918AA3604008BBB32 /* CCProfiling.m in Sources */,
@@ -1117,10 +1118,12 @@
 				ADD86C8818AA3604008BBB32 /* CCTextureCache.m in Sources */,
 				ADD86D2B18AA3605008BBB32 /* neon_matrix_impl.c in Sources */,
 				AD9FCB5918C9B0B8004B308A /* Bullet.m in Sources */,
+				AD9FCBA418CDB43A004B308A /* Snapshoter.m in Sources */,
 				AD9FCB4F18C9AA97004B308A /* ScoreLayer.m in Sources */,
 				ADD86C5B18AA3604008BBB32 /* CCScene.m in Sources */,
 				ADD86BDA18AA3603008BBB32 /* CCActionGrid3D.m in Sources */,
 				ADD86D2318AA3605008BBB32 /* mat4stack.c in Sources */,
+				AD9FCB9E18C9CAD4004B308A /* GameScene.m in Sources */,
 				ADD86C7F18AA3604008BBB32 /* CCSpriteFrameCache.m in Sources */,
 				ADD86C0818AA3603008BBB32 /* CCDirector.m in Sources */,
 				ADD86BF818AA3603008BBB32 /* CCAtlasNode.m in Sources */,
@@ -1131,11 +1134,9 @@
 				ADD86CE218AA3604008BBB32 /* CGPointExtension.m in Sources */,
 				ADD86BE618AA3603008BBB32 /* CCActionPageTurn3D.m in Sources */,
 				ADD86D3718AA3605008BBB32 /* vec3.c in Sources */,
-				AD9FCB4D18C9AA97004B308A /* HelloWorldLayer.m in Sources */,
 				ADD86CE918AA3604008BBB32 /* TGAlib.m in Sources */,
 				ADD86BF218AA3603008BBB32 /* CCAnimation.m in Sources */,
 				ADD86D1D18AA3605008BBB32 /* aabb.c in Sources */,
-				AD9FCB5218C9AA97004B308A /* THCapture.m in Sources */,
 				ADD86C9418AA3604008BBB32 /* CCTMXObjectGroup.m in Sources */,
 				ADD86CF618AA3604008BBB32 /* CDAudioManager.m in Sources */,
 				ADD86CA318AA3604008BBB32 /* CCTransitionProgress.m in Sources */,
@@ -1157,8 +1158,7 @@
 				ADD86D2518AA3605008BBB32 /* matrix.c in Sources */,
 				ADD86C0B18AA3603008BBB32 /* CCDrawingPrimitives.m in Sources */,
 				ADD86C7318AA3604008BBB32 /* ccShaders.m in Sources */,
-				AD9FCB4C18C9AA97004B308A /* GameOverLayer.m in Sources */,
-				AD9FCB5318C9AA97004B308A /* THCaptureUtilities.m in Sources */,
+				AD9FCB4C18C9AA97004B308A /* GameOverScene.m in Sources */,
 				ADD86CC918AA3604008BBB32 /* CCWindow.m in Sources */,
 				ADD86CA718AA3604008BBB32 /* cocos2d.m in Sources */,
 				ADD86C5418AA3604008BBB32 /* CCProgressTimer.m in Sources */,

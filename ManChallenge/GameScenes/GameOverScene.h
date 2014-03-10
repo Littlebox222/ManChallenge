@@ -1,5 +1,5 @@
 //
-//  GameOverLayer.h
+//  GameOverScene.h
 //  ManChallenge
 //
 //  Created by Littlebox222 on 14-2-13.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface GameOverLayer : CCLayerColor {
+@interface GameOverScene : CCLayerColor {
     
 }
 
