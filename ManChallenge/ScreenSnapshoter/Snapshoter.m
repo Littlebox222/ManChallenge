@@ -53,7 +53,7 @@ static Snapshoter *sharedSnapshoter;
         
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        self.spriteBufferCache = [[[CCSprite alloc] initWithFile:@"Default.png" rect:CGRectMake(0, 0, winSize.width, winSize.height)] autorelease];
+        self.spriteBufferCache = [[[CCSprite alloc] initWithFile:@"Default-568h@2x.png" rect:CGRectMake(0, 0, winSize.width, winSize.height)] autorelease];
         _spriteBufferCache.position = ccp(winSize.width/2, winSize.height/2);
         
         const GLchar * fragmentSource = (GLchar*) [[NSString stringWithContentsOfFile:[CCFileUtils fullPathFromRelativePath:@"CSEColorRamp.fsh"]
@@ -129,7 +129,7 @@ static Snapshoter *sharedSnapshoter;
     [render1 beginWithClear:0.0f g:0.0f b:0.0f a:1.0f];
     [[CCDirector sharedDirector] drawScene];
     [render1 end];
-    
+
     
     [self.spriteBufferCache setTexture:render1.sprite.texture];
     
@@ -144,7 +144,6 @@ static Snapshoter *sharedSnapshoter;
 
 - (void)drawFrame
 {
-    
     if (!_writing) {
         
         _writing = true;

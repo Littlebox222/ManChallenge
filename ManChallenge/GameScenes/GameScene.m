@@ -86,10 +86,10 @@ static GameScene *sharedScene;
         self.scoreLayer = [ScoreLayer node];
         [self addChild:_scoreLayer];
         
-        self.snapshorer = [[[Snapshoter alloc] init] autorelease];
-        _snapshorer.frameRate = 60;
-        _snapshorer.delegate = self;
-        [_snapshorer startRecording];
+//        self.snapshorer = [[[Snapshoter alloc] init] autorelease];
+//        _snapshorer.frameRate = 30;
+//        _snapshorer.delegate = self;
+//        [_snapshorer startRecording];
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"game_music.mp3"];
         
@@ -101,7 +101,7 @@ static GameScene *sharedScene;
 
 - (void)handleGameOver {
     
-    [_snapshorer stopRecording];
+//    [_snapshorer stopRecording];
     
     _scoreLayer.isGameOver = YES;
     

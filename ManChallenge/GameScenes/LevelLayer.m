@@ -104,15 +104,15 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
         }
     }
     
-    for (Bullet *bullet in bulletsToDelete) {
-        
-        [_bullets removeObject:bullet];
-        [self removeChild:bullet cleanup:YES];
-        
-        [_player handleCollisionWith:bullet];
-        
-        [[GameScene sharedScene] handleGameOver];
-    }
+//    for (Bullet *bullet in bulletsToDelete) {
+//        
+//        [_bullets removeObject:bullet];
+//        [self removeChild:bullet cleanup:YES];
+//        
+//        [_player handleCollisionWith:bullet];
+//        
+//        [[GameScene sharedScene] handleGameOver];
+//    }
     
     [bulletsToDelete release];
 }
