@@ -9,10 +9,12 @@
 #import "CCLayer.h"
 #import "Hero.h"
 #import "Bullet.h"
+#import "Missile.h"
 
 @interface LevelLayer : CCLayer
 
 @property (nonatomic, retain) Hero *player;
 @property (nonatomic, retain) NSMutableArray *bullets;
+@property (nonatomic, retain) NSMutableArray *missiles;
 
 @end

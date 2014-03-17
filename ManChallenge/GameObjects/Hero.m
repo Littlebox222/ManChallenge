@@ -9,6 +9,7 @@
 #import "Hero.h"
 #import "SimpleAudioEngine.h"
 #import "Bullet.h"
+#import "Missile.h"
 
 @implementation Hero
 
@@ -58,7 +59,7 @@
 - (void)handleCollisionWith:(GameObject *)gameObject
 {
     
-    if (!_destroyed && [gameObject isKindOfClass:[Bullet class]]) {
+    if (!_destroyed && ([gameObject isKindOfClass:[Bullet class]] || [gameObject isKindOfClass:[Missile class]])) {
         
         _destroyed = YES;
         

@@ -7,6 +7,7 @@
 //
 
 #import "GameObject.h"
+#import "Cannon.h"
 
 @interface Bullet : GameObject {
     
@@ -15,5 +16,7 @@
 
 
 - (id)initWithFile:(NSString *)filename andContainArray:(NSMutableArray *)containArray;
+
+- (id)initWithFile:(NSString *)filename andContainArray:(NSMutableArray *)containArray fromCannon:(Cannon *)cannon;
 
 @end

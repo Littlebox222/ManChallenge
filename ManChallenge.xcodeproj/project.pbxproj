@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502F505618D60795001352ED /* Cannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F505518D60795001352ED /* Cannon.m */; };
+		502F505918D6093F001352ED /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F505818D6093F001352ED /* Missile.m */; };
 		AD9FCB4B18C9AA97004B308A /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB3918C9AA97004B308A /* GameObject.m */; };
 		AD9FCB4C18C9AA97004B308A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB3C18C9AA97004B308A /* GameOverScene.m */; };
 		AD9FCB4F18C9AA97004B308A /* ScoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9FCB4218C9AA97004B308A /* ScoreLayer.m */; };
@@ -162,6 +164,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		502F505418D60795001352ED /* Cannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cannon.h; sourceTree = "<group>"; };
+		502F505518D60795001352ED /* Cannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cannon.m; sourceTree = "<group>"; };
+		502F505718D6093F001352ED /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
+		502F505818D6093F001352ED /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
 		AD9FCB3818C9AA97004B308A /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		AD9FCB3918C9AA97004B308A /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		AD9FCB3B18C9AA97004B308A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
@@ -505,6 +511,10 @@
 				AD9FCB5518C9AFA0004B308A /* Hero.m */,
 				AD9FCB5718C9B0B8004B308A /* Bullet.h */,
 				AD9FCB5818C9B0B8004B308A /* Bullet.m */,
+				502F505418D60795001352ED /* Cannon.h */,
+				502F505518D60795001352ED /* Cannon.m */,
+				502F505718D6093F001352ED /* Missile.h */,
+				502F505818D6093F001352ED /* Missile.m */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -1161,6 +1171,7 @@
 				AD9FCB4C18C9AA97004B308A /* GameOverScene.m in Sources */,
 				ADD86CC918AA3604008BBB32 /* CCWindow.m in Sources */,
 				ADD86CA718AA3604008BBB32 /* cocos2d.m in Sources */,
+				502F505618D60795001352ED /* Cannon.m in Sources */,
 				ADD86C5418AA3604008BBB32 /* CCProgressTimer.m in Sources */,
 				ADD86C2918AA3604008BBB32 /* CCLabelTTF.m in Sources */,
 				ADD86CD618AA3604008BBB32 /* CCFileUtils.m in Sources */,
@@ -1173,6 +1184,7 @@
 				ADD86D3918AA3605008BBB32 /* vec4.c in Sources */,
 				ADD86BFB18AA3603008BBB32 /* CCCamera.m in Sources */,
 				ADD86BF518AA3603008BBB32 /* CCAnimationCache.m in Sources */,
+				502F505918D6093F001352ED /* Missile.m in Sources */,
 				ADD86C1718AA3603008BBB32 /* CCGLProgram.m in Sources */,
 				ADD86D0718AA3605008BBB32 /* SimpleAudioEngine.m in Sources */,
 				ADD86CB918AA3604008BBB32 /* CCTouchDispatcher.m in Sources */,
