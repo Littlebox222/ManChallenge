@@ -8,8 +8,6 @@
 
 #import "Missile.h"
 
-#define kAngleEdge  [CCDirector sharedDirector].winSize.height / [CCDirector sharedDirector].winSize.width
-
 @implementation Missile
 
 - (id)initWithFile:(NSString *)filename andContainArray:(NSMutableArray *)containArray targetObject:(GameObject *)target
@@ -26,8 +24,8 @@
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
     // speed
-    int minDuration = 1.0;
-    int maxDuration = 3.0;
+    int minDuration = 2.0;
+    int maxDuration = 4.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
