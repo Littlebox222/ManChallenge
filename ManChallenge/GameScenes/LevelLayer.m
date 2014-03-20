@@ -55,8 +55,8 @@
     [self scheduleUpdate];
     
     [self schedule:@selector(gameLogicBullet:) interval:1/5.0];
-    
     [self schedule:@selector(gameLogicMissile:) interval:3.0];
+    [self schedule:@selector(gameLogicBlackhole:) interval:10.0];
     
     return self;
 }
@@ -94,72 +94,77 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
 
 - (void)update:(ccTime)delta {
     
-    CGRect rect = _player.boundingBox;
-    CGRect rect1 = CGRectMake(rect.origin.x + 11, rect.origin.y + 1, 8, 28);
-    CGRect rect2 = CGRectMake(rect.origin.x +  4, rect.origin.y + 1, 7, 16);
-    CGRect rect3 = CGRectMake(rect.origin.x + 19, rect.origin.y + 1, 7, 16);
-    CGRect rect4 = CGRectMake(rect.origin.x +  0, rect.origin.y + 3, 4,  5);
-    CGRect rect5 = CGRectMake(rect.origin.x + 27, rect.origin.y + 3, 4,  5);
-    
-    
-    NSMutableArray *bulletsToDelete = [[NSMutableArray alloc] init];
-    
-    for (CCSprite *bullet in _bullets) {
-        
-        if (CGRectIntersectsRect(rect1, bullet.boundingBox) ||
-            CGRectIntersectsRect(rect2, bullet.boundingBox) ||
-            CGRectIntersectsRect(rect3, bullet.boundingBox) ||
-            CGRectIntersectsRect(rect4, bullet.boundingBox) ||
-            CGRectIntersectsRect(rect5, bullet.boundingBox)) {
-            
-            [bulletsToDelete addObject:bullet];
-        }
-    }
-    
-    for (CCSprite *missile in _missiles) {
-        
-        if (CGRectIntersectsRect(rect1, missile.boundingBox) ||
-            CGRectIntersectsRect(rect2, missile.boundingBox) ||
-            CGRectIntersectsRect(rect3, missile.boundingBox) ||
-            CGRectIntersectsRect(rect4, missile.boundingBox) ||
-            CGRectIntersectsRect(rect5, missile.boundingBox)) {
-            
-            [bulletsToDelete addObject:missile];
-        }
-    }
-    
-    for (Bullet *bullet in bulletsToDelete) {
-        
-        [_bullets removeObject:bullet];
-        [self removeChild:bullet cleanup:YES];
-        
-        [_player handleCollisionWith:bullet];
-        
-        [[GameScene sharedScene] handleGameOver];
-    }
-    
-    for (Missile *missile in bulletsToDelete) {
-        
-        [_missiles removeObject:missile];
-        [self removeChild:missile cleanup:YES];
-        
-        [_player handleCollisionWith:missile];
-        
-        [[GameScene sharedScene] handleGameOver];
-    }
-
-    
-    [bulletsToDelete release];
+//    CGRect rect = _player.boundingBox;
+//    CGRect rect1 = CGRectMake(rect.origin.x + 11, rect.origin.y + 1, 8, 28);
+//    CGRect rect2 = CGRectMake(rect.origin.x +  4, rect.origin.y + 1, 7, 16);
+//    CGRect rect3 = CGRectMake(rect.origin.x + 19, rect.origin.y + 1, 7, 16);
+//    CGRect rect4 = CGRectMake(rect.origin.x +  0, rect.origin.y + 3, 4,  5);
+//    CGRect rect5 = CGRectMake(rect.origin.x + 27, rect.origin.y + 3, 4,  5);
+//    
+//    
+//    NSMutableArray *bulletsToDelete = [[NSMutableArray alloc] init];
+//    
+//    for (CCSprite *bullet in _bullets) {
+//        
+//        if (CGRectIntersectsRect(rect1, bullet.boundingBox) ||
+//            CGRectIntersectsRect(rect2, bullet.boundingBox) ||
+//            CGRectIntersectsRect(rect3, bullet.boundingBox) ||
+//            CGRectIntersectsRect(rect4, bullet.boundingBox) ||
+//            CGRectIntersectsRect(rect5, bullet.boundingBox)) {
+//            
+//            [bulletsToDelete addObject:bullet];
+//        }
+//    }
+//    
+//    for (CCSprite *missile in _missiles) {
+//        
+//        if (CGRectIntersectsRect(rect1, missile.boundingBox) ||
+//            CGRectIntersectsRect(rect2, missile.boundingBox) ||
+//            CGRectIntersectsRect(rect3, missile.boundingBox) ||
+//            CGRectIntersectsRect(rect4, missile.boundingBox) ||
+//            CGRectIntersectsRect(rect5, missile.boundingBox)) {
+//            
+//            [bulletsToDelete addObject:missile];
+//        }
+//    }
+//    
+//    for (Bullet *bullet in bulletsToDelete) {
+//        
+//        [_bullets removeObject:bullet];
+//        [self removeChild:bullet cleanup:YES];
+//        
+//        [_player handleCollisionWith:bullet];
+//        
+//        [[GameScene sharedScene] handleGameOver];
+//    }
+//    
+//    for (Missile *missile in bulletsToDelete) {
+//        
+//        [_missiles removeObject:missile];
+//        [self removeChild:missile cleanup:YES];
+//        
+//        [_player handleCollisionWith:missile];
+//        
+//        [[GameScene sharedScene] handleGameOver];
+//    }
+//
+//    
+//    [bulletsToDelete release];
 }
 
--(void)gameLogicBullet:(ccTime)dt {
+- (void)gameLogicBullet:(ccTime)dt {
     
     [self addBullet];
 }
 
--(void)gameLogicMissile:(ccTime)dt {
+- (void)gameLogicMissile:(ccTime)dt {
     
     [self addMissile];
+}
+
+- (void)gameLogicBlackhole:(ccTime)dt {
+    
+    [self addBlackhole];
 }
 
 - (void)addBullet {
@@ -181,6 +186,16 @@ static UIAccelerationValue rollingX = 0, rollingY = 0, rollingZ = 0;
         
         [_missiles addObject:missile];
         [self addChild:missile];
+    }
+}
+
+- (void)addBlackhole {
+    
+    BlackHole *blackhole = [[BlackHole alloc] initWithFile:@"blackhole.png"];
+    
+    if (blackhole != nil) {
+        
+        [self addChild:blackhole];
     }
 }
 

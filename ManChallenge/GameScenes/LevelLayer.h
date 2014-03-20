@@ -10,6 +10,7 @@
 #import "Hero.h"
 #import "Bullet.h"
 #import "Missile.h"
+#import "BlackHole.h"
 
 @interface LevelLayer : CCLayer
 

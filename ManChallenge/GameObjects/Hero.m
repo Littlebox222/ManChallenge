@@ -25,7 +25,7 @@
     
     _destroyed = NO;
     self.tag = kTagHero;
-    
+    self.zOrder = 10000;
     [self scheduleUpdate];
     
     return self;
